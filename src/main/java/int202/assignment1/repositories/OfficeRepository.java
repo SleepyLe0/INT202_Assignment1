@@ -18,11 +18,15 @@ public class OfficeRepository {
     }
 
     public List<Office> findAll() {
-        return getEntityManager().createQuery("select o from Office o ").getResultList();
+        return getEntityManager().createNamedQuery("OFFICE.FIND_ALL").getResultList();
     }
 
     public Office findByOfficeCode(String officeCode) {
         return getEntityManager().find(Office.class, officeCode);
+    }
+
+    public List<Office> search(String search) {
+        return getEntityManager().createNamedQuery("OFFICE.SEARCH_ALL").setParameter("search", search).getResultList();
     }
 
     public boolean insert(Office office) {

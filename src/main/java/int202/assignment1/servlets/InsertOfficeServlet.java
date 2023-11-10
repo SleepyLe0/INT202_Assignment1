@@ -14,7 +14,11 @@ import java.util.Map;
 public class InsertOfficeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/insert_office.jsp").forward(request, response);
+        if (request.getParameter("cancel") != null) {
+            response.sendRedirect("office-home");
+        } else {
+            request.getRequestDispatcher("/insert_office.jsp").forward(request, response);
+        }
     }
 
     @Override

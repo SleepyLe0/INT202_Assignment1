@@ -12,12 +12,47 @@
     <title>Home</title>
     <style>
         body {
-            background-color: aqua;
-            color: deeppink;
+            background-color: #382933;
+            color: #A4B494;
             padding: 3rem;
         }
-        .heading {
+        .heading-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .heading-container h1 {
             font-size: 5rem;
+        }
+        .search-container {
+            display: flex;
+            gap: 1rem;
+        }
+        .search, .clear {
+            display: flex;
+            align-items: center;
+        }
+        .search form {
+            display: flex;
+            gap: 1rem;
+        }
+        .search label {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            gap: 1rem;
+        }
+        .search label > input {
+            font-size: 1.5rem;
+        }
+        .submit-button {
+            font-size: 1.5rem;
+            padding: .25rem;
+            border: .25rem solid #3B5249;
+            border-radius: .75rem;
+            background-color: #155920;
+            color: #aeefbd;
+            text-decoration: none;
         }
         .office-container {
             margin-top: 2rem;
@@ -29,9 +64,10 @@
             padding: 1rem;
             height: 18rem;
             text-decoration: none;
+            border: .5rem solid #3B5249;
             border-radius: .75rem;
-            background-color: green;
-            color: yellow;
+            background-color: #519872;
+            color: #dbe7ce;
         }
         .office-head {
             display: flex;
@@ -39,6 +75,7 @@
         }
         .office-details-container {
             display: grid;
+            margin-top: .75rem;
             grid-template-columns: 4fr 1fr;
             height: 12rem;
         }
@@ -56,10 +93,10 @@
             color: white;
         }
         .update {
-            background-color: darkblue;
+            background-color: #8f9ae5;
         }
         .delete {
-            background-color: red;
+            background-color: #e39191;
         }
         .confirm {
             background-color: lightgreen;
@@ -73,7 +110,30 @@
     </style>
 </head>
 <body>
-<h1 class="heading">Office List</h1>
+<div class="heading-container">
+    <h1>Office List</h1>
+    <div class="search-container">
+        <div class="search">
+            <form action="office-home" method="post">
+                <label>
+                    Search :
+                    <c:if test="${requestScope.search != null}">
+                        <input type="text" name="search" placeholder="city, country and etc." value="${requestScope.search}">
+                    </c:if>
+                    <c:if test="${requestScope.search == null}">
+                        <input type="text" name="search" placeholder="city, country and etc.">
+                    </c:if>
+                </label>
+                <input type="submit" value="search" class="submit-button">
+            </form>
+        </div>
+        <div class="clear">
+            <form action="office-home?clear=OK" method="post">
+                <input type="submit" value="clear" class="submit-button">
+            </form>
+        </div>
+    </div>
+</div>
 <hr>
 <div class="office-container">
     <c:forEach items="${requestScope.officeList}" var="office">

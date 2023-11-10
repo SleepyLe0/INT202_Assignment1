@@ -12,11 +12,15 @@ import java.io.IOException;
 public class UpdateOfficeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String officeCode = request.getParameter("officeCode");
-        OfficeRepository officeRepository = new OfficeRepository();
-        Office updateOffice = officeRepository.findByOfficeCode(officeCode);
-        request.setAttribute("updateOffice", updateOffice);
-        request.getRequestDispatcher("/update_office.jsp").forward(request, response);
+        if (request.getParameter("cancel") != null) {
+            response.sendRedirect("office-home");
+        }else {
+            String officeCode = request.getParameter("officeCode");
+            OfficeRepository officeRepository = new OfficeRepository();
+            Office updateOffice = officeRepository.findByOfficeCode(officeCode);
+            request.setAttribute("updateOffice", updateOffice);
+            request.getRequestDispatcher("/update_office.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -31,18 +35,22 @@ public class UpdateOfficeServlet extends HttpServlet {
 
     public Office createOfficeFromRequest(HttpServletRequest request) {
         String officeCode = request.getParameter("officeCode");
-        String city = validateOffice(request.getParameter("city"));
-        String phone = validateOffice(request.getParameter("phone"));
-        String addressLine1 = validateOffice(request.getParameter("addressLine1"));
-        String addressLine2 = validateOffice(request.getParameter("addressLine2"));
-        String state = validateOffice(request.getParameter("state"));
-        String country = validateOffice(request.getParameter("country"));
-        String postalCode = validateOffice(request.getParameter("postalCode"));
-        String territory = validateOffice(request.getParameter("territory"));
+        String city = validateOfficeNotNull(request.getParameter("city"));
+        String phone = validateOfficeNotNull(request.getParameter("phone"));
+        String addressLine1 = validateOfficeNotNull(request.getParameter("addressLine1"));
+        String addressLine2 = validateOfficeNull(request.getParameter("addressLine2"));
+        String state = validateOfficeNull(request.getParameter("state"));
+        String country = validateOfficeNotNull(request.getParameter("country"));
+        String postalCode = validateOfficeNotNull(request.getParameter("postalCode"));
+        String territory = validateOfficeNotNull(request.getParameter("territory"));
         return new Office(officeCode, city, phone, addressLine1, addressLine2, state, country, postalCode, territory);
     }
 
-    public String validateOffice(String parameter) {
+    public String validateOfficeNotNull(String parameter) {
+        return parameter.equals("") || parameter.isBlank() ? null : parameter.trim();
+    }
+
+    public String validateOfficeNull(String parameter) {
         return parameter.equals("") ? null : parameter.trim();
     }
 }

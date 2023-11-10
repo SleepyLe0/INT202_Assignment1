@@ -16,8 +16,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background-color: aqua;
-      color: deeppink;
+      background-color: #382933;
+      color: #A4B494;
       padding: 3rem;
     }
     .heading {
@@ -29,9 +29,10 @@
       align-items: center;
       padding: 3rem;
       gap: 2rem;
-      border: 1px solid blue;
+      border: .5rem solid #3B5249;
       border-radius: .75rem;
-      background-color: indigo;
+      background-color: #519872;
+      color: #dbe7ce;
     }
     .update-form label {
       display: flex;
@@ -45,16 +46,27 @@
       justify-content: center;
       align-items: center;
     }
-    .submit input {
+    .submit input, .cancel a {
       font-size: 1.5rem;
       padding: 1rem;
-      background-color: green;
-      color: yellow;
+      border: .25rem solid #3B5249;
+      border-radius: .75rem;
+      background-color: #155920;
+      color: #aeefbd;
+      text-decoration: none;
+    }
+    .cancel {
+      width: 100%;
+      display: flex;
+      justify-content: end;
     }
   </style>
 </head>
 <body>
-<h1 class="heading">${requestScope.updateOffice.officeCode} ${requestScope.updateOffice.city}</h1>
+<div class="cancel">
+  <a href="update-office?cancel=OK">Back</a>
+</div>
+<h1 class="heading">Office# ${requestScope.updateOffice.officeCode}</h1>
 <div class="update-form">
   <form method="post" action="update-office?officeCode=${requestScope.updateOffice.officeCode}">
     <label>
