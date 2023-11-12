@@ -16,6 +16,9 @@
             color: #A4B494;
             padding: 3rem;
         }
+        form {
+            margin: 0;
+        }
         .heading-container {
             display: flex;
             justify-content: space-between;
@@ -26,11 +29,11 @@
         }
         .search-container {
             display: flex;
+            align-items: center;
             gap: 1rem;
         }
         .search, .clear {
             display: flex;
-            align-items: center;
         }
         .search form {
             display: flex;
@@ -38,12 +41,12 @@
         }
         .search label {
             display: flex;
-            align-items: center;
             font-size: 2rem;
             gap: 1rem;
         }
         .search label > input {
             font-size: 1.5rem;
+            border-radius: .25rem;
         }
         .submit-button {
             font-size: 1.5rem;

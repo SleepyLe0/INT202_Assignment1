@@ -1,13 +1,9 @@
 package int202.assignment1.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -18,7 +14,9 @@ import java.util.List;
         @NamedQuery(name = "OFFICE.FIND_ALL",
                 query = "select o from Office o "),
         @NamedQuery(name = "OFFICE.SEARCH_ALL",
-                query = "select o from Office o where o.officeCode like :search or o.city like :search or o.phone like :search or o.addressLine1 like :search or o.addressLine2 like :search or o.state like :search or o.country like :search or o.postalCode like :search or o.territory like :search")
+                query = "select o from Office o where o.officeCode like :search or o.city like :search or " +
+                        "o.phone like :search or o.addressLine1 like :search or o.addressLine2 like :search or " +
+                        "o.state like :search or o.country like :search or o.postalCode like :search or o.territory like :search")
 })
 public class Office {
     @Id
