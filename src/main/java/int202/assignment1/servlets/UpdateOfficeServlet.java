@@ -26,7 +26,6 @@ public class UpdateOfficeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Office newOffice = createOfficeFromRequest(request);
-        System.out.println(newOffice);
         OfficeRepository officeRepository = new OfficeRepository();
         officeRepository.update(newOffice);
         officeRepository.close();
