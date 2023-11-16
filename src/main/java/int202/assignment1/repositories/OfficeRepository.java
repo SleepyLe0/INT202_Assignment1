@@ -3,7 +3,6 @@ package int202.assignment1.repositories;
 import int202.assignment1.entities.Office;
 import int202.assignment1.utilities.EntityManagerBuilder;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
 
 import java.util.List;
 
