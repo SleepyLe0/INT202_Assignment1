@@ -64,7 +64,7 @@ public class OfficeRepository {
             office.setAddressLine1(newOffice.getAddressLine1() == null ? office.getAddressLine1() : newOffice.getAddressLine1());
             office.setAddressLine2(newOffice.getAddressLine2() == null ? office.getAddressLine2() : newOffice.getAddressLine2());
             office.setState(newOffice.getState() == null ? office.getState() : newOffice.getState());
-            office.setCountry(newOffice.getState() == null ? office.getCountry() : newOffice.getCountry());
+            office.setCountry(newOffice.getCountry() == null ? office.getCountry() : newOffice.getCountry());
             office.setPostalCode(newOffice.getPostalCode() == null ? office.getPostalCode() : newOffice.getPostalCode());
             office.setTerritory(newOffice.getTerritory() == null ? office.getTerritory() : newOffice.getTerritory());
             entityManager.getTransaction().commit();

@@ -26,12 +26,12 @@ public class UpdateOfficeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Office newOffice = createOfficeFromRequest(request);
+        System.out.println(newOffice);
         OfficeRepository officeRepository = new OfficeRepository();
         officeRepository.update(newOffice);
         officeRepository.close();
         response.sendRedirect("office-home");
     }
-
     public Office createOfficeFromRequest(HttpServletRequest request) {
         String officeCode = request.getParameter("officeCode");
         String city = validateOfficeNotNull(request.getParameter("city"));
@@ -44,11 +44,9 @@ public class UpdateOfficeServlet extends HttpServlet {
         String territory = validateOfficeNotNull(request.getParameter("territory"));
         return new Office(officeCode, city, phone, addressLine1, addressLine2, state, country, postalCode, territory);
     }
-
     public String validateOfficeNotNull(String parameter) {
         return parameter.equals("") || parameter.isBlank() ? null : parameter.trim();
     }
-
     public String validateOfficeNull(String parameter) {
         return parameter.equals("") ? null : parameter.trim();
     }

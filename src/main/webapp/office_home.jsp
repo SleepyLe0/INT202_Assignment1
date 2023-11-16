@@ -143,10 +143,10 @@
         <div class="office">
             <div class="office-head">
                 <h1>${office.officeCode} ${office.city}</h1>
-                <c:if test="${office.state != null}">
+                <c:if test="${office.state != null && !office.state.equals('')}">
                     <h1>${office.state}, ${office.country}</h1>
                 </c:if>
-                <c:if test="${office.state == null}">
+                <c:if test="${office.state == null || office.state.equals('')}">
                     <h1>${office.country}</h1>
                 </c:if>
             </div>
